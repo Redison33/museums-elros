@@ -27,9 +27,10 @@
       ></textarea>
       <span v-if="errors.description" class="error">Поле не должно быть пустым</span>
     </div>
+    <input type="file" src="" alt="" @input="img = $event.target.value" />
     <div>
       <button class="buttonBack" @click="$router.push('/')">Назад</button>
-      <button class="buttonAdd" @click="addMuseum">Добавить</button>
+      <button class="buttonAdd" @click="addImg">Добавить</button>
     </div>
   </main>
 </template>
@@ -41,6 +42,7 @@ export default {
       newName: '',
       newShortName: '',
       description: '',
+      img: null,
       errors: {
         newName: false,
         newShortName: false,
@@ -65,6 +67,12 @@ export default {
             console.error('Ошибка при добавлении музея:', error);
           });
       }
+    },
+    addImg() {
+      // axios.post('https://developer3.elros.info/api/v1/images/', {
+      //   image: this.img,
+      // });
+      console.log(this.img);
     },
     validateForm() {
       this.errors.newName = !this.newName;
